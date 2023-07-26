@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpood_01/features/product/provider/product_provider.dart';
+import 'package:flutter_riverpood_01/route/routes.dart';
+import 'package:gap/gap.dart';
+
+class ProductsPage extends ConsumerWidget {
+  const ProductsPage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(productProvider);
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(Routes.favourite);
+        },
+        child: const Icon(Icons.shopping_bag_outlined),
+      ),
+      appBar: AppBar(
+        title: const Text('Products'),
+      ),
+      body: ref.watch(isLoadingProductsProvider)
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.separated(
+              itemCount: data.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const Gap(10);
+              },
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(data[index].title ?? ''),
+                  subtitle: Text('\$${data[index].price.toString()}'),
+                  trailing: data[index].isFavourite
+                      ? IconButton(
+                          icon: const Icon(
+                            Icons.favorite,
+                          ),
+                          onPressed: () {
+                            ref.read(productProvider.notifier).toggleFavourite(
+                                data[index].id ?? 0,
+                                isFavourite: false);
+                          },
+                        )
+                      : IconButton(
+                          icon: const Icon(
+                            Icons.favorite_outline,
+                          ),
+                          onPressed: () {
+                            ref.read(productProvider.notifier).toggleFavourite(
+                                data[index].id ?? 0,
+                                isFavourite: true);
+                          },
+                        ),
+                );
+              },
+            ),
+    );
+  }
+}

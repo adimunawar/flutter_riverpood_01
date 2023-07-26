@@ -45,6 +45,8 @@ dependencies:
   shared_preferences: ^2.0.15
   flutter_screenutil: ^5.6.0
   gap: ^2.0.1
+  fpdart: ^0.6.0
+  flutter_background_video_recorder: ^0.0.9+1
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +58,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  json_serializable: ^6.5.4
+  build_runner: ^2.3.2
+  freezed: ^2.2.1
+  flutter_gen_runner: ^5.1.0+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

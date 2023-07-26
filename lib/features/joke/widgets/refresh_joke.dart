@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpood_01/features/joke/provider/joke_provider.dart';
 
 class RefreshJoke extends ConsumerWidget {
   const RefreshJoke({
@@ -10,7 +11,7 @@ class RefreshJoke extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton(
       onPressed: () {
-        // ref.read(jokeDataProvider.notifier).getJoke
+        ref.read(jokeDataProvider.notifier).getJoke();
       },
       child: const Icon(Icons.refresh),
     );

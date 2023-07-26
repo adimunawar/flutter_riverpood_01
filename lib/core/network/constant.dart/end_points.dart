@@ -4,6 +4,7 @@ class Endpoints {
       "https://v2.jokeapi.dev/joke/Programming?type=single";
 
   static const String product = 'https://fakestoreapi.com/products/';
+  static const String login = 'https://finatara.com/api/login';
 
   // receiveTimeout
   static const int receiveTimeout = 15000;
