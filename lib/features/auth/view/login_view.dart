@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpood_01/core/shared_preferences/prefrences.dart';
+import 'package:flutter_riverpood_01/core/shared_provider/shared_provider.dart';
 import 'package:flutter_riverpood_01/features/auth/provider/auth_provider.dart';
 
 class LoginView extends ConsumerStatefulWidget {
@@ -22,6 +24,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
   }
 
   void onLogin() {
+    // var token = ref.read(sharedPrefHelperProvider).authToken;
+    // print(token);
     ref.read(authControllerProvider.notifier).loginEmailPassword(
           email: emailController.text,
           password: passwordController.text,
@@ -68,7 +72,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
             isLoading
                 ? CircularProgressIndicator()
                 : ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       onLogin();
                     },
                     child: Text("Login"))

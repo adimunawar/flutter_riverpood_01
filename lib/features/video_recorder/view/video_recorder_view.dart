@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_background_video_recorder/flutter_bvr.dart';
 import 'package:flutter_background_video_recorder/flutter_bvr_platform_interface.dart';

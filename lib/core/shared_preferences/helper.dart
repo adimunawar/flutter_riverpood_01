@@ -19,12 +19,12 @@ class SharedPreferenceHelper {
     return _sharedPreference.remove(PrefKeys.authToken);
   }
 
-  Future<void> saveIsLoggedIn(bool value) async {
-    await _sharedPreference.setBool(PrefKeys.isLoggedIn, value);
+  Future<void> saveOnBoarding(bool value) async {
+    await _sharedPreference.setBool(PrefKeys.isOnboarding, value);
   }
 
-  bool get isLoggedIn {
-    return _sharedPreference.getBool(PrefKeys.isLoggedIn) ?? false;
+  bool get isOnboarding {
+    return _sharedPreference.getBool(PrefKeys.isOnboarding) ?? false;
   }
 
   Future<void> clear() async {
@@ -33,6 +33,6 @@ class SharedPreferenceHelper {
 }
 
 mixin PrefKeys {
-  static const String isLoggedIn = "isLoggedIn";
+  static const String isOnboarding = "isLoggedIn";
   static const String authToken = "authToken";
 }
