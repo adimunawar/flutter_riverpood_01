@@ -4,7 +4,6 @@ import 'package:flutter_riverpood_01/core/shared_provider/shared_provider.dart';
 import 'package:flutter_riverpood_01/features/auth/view/login_view.dart';
 import 'package:flutter_riverpood_01/features/home/widgets/home_button.dart';
 import 'package:flutter_riverpood_01/route/routes.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class HomePage extends ConsumerWidget {

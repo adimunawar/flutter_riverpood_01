@@ -6,9 +6,7 @@ import 'package:flutter_riverpood_01/core/utils/snack_bar.dart';
 import 'package:flutter_riverpood_01/features/auth/data/api/auth_api.dart';
 import 'package:flutter_riverpood_01/features/auth/data/models/user_model.dart';
 import 'package:flutter_riverpood_01/features/auth/data/repository/auth_repository.dart';
-import 'package:flutter_riverpood_01/features/auth/view/testing.dart';
 import 'package:flutter_riverpood_01/features/home/view/home_page.dart';
-import 'package:flutter_riverpood_01/features/video_recorder/view/video_recorder_view.dart';
 
 final authApiProvider = Provider<AuthApi>((ref) {
   return AuthApi(ref.read(dioClientProvider));
@@ -28,11 +26,6 @@ final authControllerProvider =
 });
 final userDataProvider = StateProvider<UserModel?>((ref) {
   return UserModel();
-});
-
-final appStateProvider = FutureProvider<bool>((ref) async {
-  final authController = ref.watch(authControllerProvider.notifier);
-  return await authController.appState();
 });
 
 class AuthController extends StateNotifier<bool> {
@@ -60,26 +53,9 @@ class AuthController extends StateNotifier<bool> {
     }, (r) {
       _ref.read(userDataProvider.notifier).state = r;
       _ref.read(sharedPrefHelperProvider).saveAuthToken(r.api_token ?? '');
-      _ref.watch(sharedPrefHelperProvider).authToken;
       showSnackBar(context, "Login Success");
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     });
-  }
-
-  //testing app state,
-  Future<bool> appState() async {
-    await Preference.load();
-    bool result = false;
-    String? token;
-    await Future.delayed(const Duration(milliseconds: 2500), () {
-      token = _ref.read(sharedPrefHelperProvider).authToken;
-    });
-    if (token != null) {
-      result = true;
-    } else {
-      result = false;
-    }
-    return result;
   }
 }
